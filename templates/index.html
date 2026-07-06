@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Flask Calculator</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="app">
+    <div class="calculator">
+      <input type="text" id="display" readonly>
+      <div class="buttons">
+        <button class="op" onclick="clearDisplay()">C</button>
+        <button class="op" onclick="deleteLast()">⌫</button>
+        <button class="op" onclick="append('(')">(</button>
+        <button class="op" onclick="append(')')">)</button>
+
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button class="op" onclick="append('/')">÷</button>
+
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+        <button class="op" onclick="append('*')">×</button>
+
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button class="op" onclick="append('-')">−</button>
+
+        <button onclick="append('0')">0</button>
+        <button onclick="append('.')">.</button>
+        <button class="equals" onclick="calculate()">=</button>
+        <button class="op" onclick="append('+')">+</button>
+      </div>
+    </div>
+
+    <div class="history">
+      <h2>History</h2>
+      <ul id="history-list">
+        {% for expr, result, created_at in history %}
+        <li>{{ expr }} = {{ result }}</li>
+        {% else %}
+        <li class="empty">No calculations yet</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
